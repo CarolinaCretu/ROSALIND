@@ -1,4 +1,6 @@
 from toolkit import *
+
+
 class GeneticAnalysis:
 
     def __init__(self, seq):
@@ -8,8 +10,10 @@ class GeneticAnalysis:
         """
         The function counts the frequency of each type of nucleotide
         """
-
-        return self.seq.count("A"), self.seq.count("G"), self.seq.count("C"), self.seq.count("T")
+        freq = {'A': 0, 'C': 0, 'G': 0, 'T': 0}
+        for i in self.seq:
+            freq[i] += 1
+        return freq
 
     def create_complementary_string(self):
         """
@@ -23,6 +27,16 @@ class GeneticAnalysis:
         The function creates the respective primary mRNA transcript
         """
         return self.seq.replace("T", "U")
+
+    # # TODO: REDO
+    # def cg_count_frequency(self):
+    #     """
+    #     The function counts the highest content of GC
+    #     """
+    #     calculation_frequency = round(((self.seq.count("C")) + self.seq.count("G")) / len(self.seq) * 100, 6)
+    #     result_dict = {key: calculation_frequency(value) for (key, value) in self.seq.items()}
+    #     max_gc_key = max(calculation_frequency, key=result_dict.get)
+    #     return f"{max_gc_key[1:]}\n{result_dict[max_gc_key]}"
 
     def count_kmer(self, kmer):
         """
